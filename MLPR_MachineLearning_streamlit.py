@@ -359,12 +359,13 @@ def make_predictions_and_plot(n_future_steps,model):
         input_data.append(next_value)
         input_data.pop(0)
     
-    plt.figure(figsize=(10, 5))
+    fig = plt.figure(figsize=(10, 5))
     plt.plot(range(len(Indonesia)), Indonesia['Indonesia'], label='Actual')
     plt.plot(range(len(Indonesia), len(Indonesia) + n_future_steps), future_predictions, label='Future Predictions', linestyle='--')
     plt.title("Future Forecasting with MLP Regression")
     plt.legend()
-    plt.show()
+    
+    return fig
 
 def main():
     st.title('Time Series Regression Model Deployment')
@@ -381,7 +382,8 @@ def main():
     
     if st.button('Make Prediction'):
         result = make_predictions_and_plot(n_future_steps,model)
-        st.success(f'The prediction is: {result}')
+        st.success(f'The prediction is: ')
+        st.pyplot(result)
         
     
 
