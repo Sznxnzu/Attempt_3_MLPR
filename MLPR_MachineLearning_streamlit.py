@@ -378,8 +378,12 @@ def main():
         model = model1
     elif model_selection == 'Model 2':
         model = model2
+    
+    if st.button('Make Prediction'):
+        result = make_predictions_and_plot(n_future_steps,model)
+        st.success(f'The prediction is: {result}')
         
-    make_predictions_and_plot(n_future_steps,model)
+    
 
 if __name__ == '__main__':
     main()
